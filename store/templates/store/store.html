@@ -1,0 +1,67 @@
+
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+     <!-- <h3>Store</h3> -->
+   <div class="search-bar">
+   		<h3 align="center">Search for a Product!</h3>
+		<form action="{% url 'search' %}" method="GET">
+		   <div class="form-group">
+		      <input type="text" class="form-control" name="search" autofocus aria-describedby="bookHelp" placeholder="Mobiles, Watch or Shoes">
+		      <small id="bookHelp" class="form-text text-muted">Example: Samsung J4, Earphones or Headphones</small>
+		   </div>
+		   <p align="center">
+		      <button class="btn btn-primary" type="submit">Search</button>
+		   </p>
+		</form>
+   </div>
+
+
+<div class="row">
+	{% for product in products %}
+	<div class="col-lg-4">
+		<!-- <img class="thumbnail" src="{% static 'images/purse.jpg' %}"> -->
+		<img class="thumbnail" src="{{product.imageUrl}}">
+		<div class="box-element product">
+			<h6><strong>{{product.name}}</strong></h6>
+			<hr>
+
+			<!-- <button  data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button> -->
+		    <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn" type="submit">Add to Cart</button>
+		      
+
+			<a class="btn btn-outline-success" href="#">View</a>
+			<h4 style="display: inline-block; float: right"><strong>${{product.price|floatformat:2}}</strong></h4>
+
+		</div>
+	</div>
+	{% endfor %}
+
+<!-- 	<div class="col-lg-4">
+		<img class="thumbnail" src="{% static 'images/shoes1.jpeg' %}">
+		<div class="box-element product">
+			<h6><strong>Shoes</strong></h6>
+			<hr>
+
+			<button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
+			<a class="btn btn-outline-success" href="#">View</a>
+			<h4 style="display: inline-block; float: right"><strong>$20</strong></h4>
+
+		</div>
+	</div>
+
+	<div class="col-lg-4">
+		<img class="thumbnail" src="{% static 'images/book1.jpg' %}">
+		<div class="box-element product">
+			<h6><strong>Book</strong></h6>
+			<hr>
+
+			<button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
+			<a class="btn btn-outline-success" href="#">View</a>
+			<h4 style="display: inline-block; float: right"><strong>$20</strong></h4>
+
+		</div>
+	</div> -->
+</div>
+{% endblock content %}
+
